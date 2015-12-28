@@ -1,0 +1,12 @@
+~README!~
+
+Author: Charlie Lovering
+
+General:
+This project consists of a SlidingPaneFX.SlidingPane class that can be used to create a pane that slides either left and right or up and down.
+
+Usage:
+Can be found by example in SlidingPaneFX.Example.java.
+
+Credits:
+This project made use of a post originally found on stackoverflow (https://gist.github.com/jewelsea/1437374).
