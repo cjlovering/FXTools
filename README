@@ -16,3 +16,4 @@ Credits:
 These components were orginally made for https://github.com/jrhackett/cs3733-team9.
 The zoomandpan was orginally created by https://github.com/jcfriscia.
 The slidingpane made use of a post originally found on stackoverflow (https://gist.github.com/jewelsea/1437374).
+The frosty class was modified from code originally found on stackoverflow (http://stackoverflow.com/questions/22622034/frosted-glass-effect-in-javafx - jewelsea).
