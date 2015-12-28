@@ -1,0 +1,18 @@
+~README!~
+
+Author: Charlie Lovering
+
+General:
+This small 'library' consists of a couple components. 
+
+The SlidingPane component consists of a class that can be used to create a pane that slides either left and right or up and down. 
+The ZoomAndPan allows the Group to zoomed to (by the mouse) and panned by dragging.
+
+
+Usage:
+It usage be found by example in Example.java. The code can be modified to change the type of the pane (VBox, HBox, AnchorPane - etc). 
+
+Credits:
+These components were orginally made for https://github.com/jrhackett/cs3733-team9.
+The zoomandpan was orginally created by https://github.com/jcfriscia.
+The slidingpane made use of a post originally found on stackoverflow (https://gist.github.com/jewelsea/1437374).
