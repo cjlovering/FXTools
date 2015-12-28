@@ -1,0 +1,11 @@
+.metadata/
+out/bin/*
+*.iml
+*.class
+.recommenders/
+.idea/*
+*.iml
+out/*
+*/.DS_Store
+
+
