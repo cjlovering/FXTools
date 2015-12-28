@@ -167,22 +167,25 @@ public class SlidingPane extends AnchorPane {
 
     /**
      * Use these functions to programmatically play specific animations
-     * @param prop [the property determining if its open or not]
+     * @param OPEN [the property determining if its open or not]
      */
-    public void playHidePane(BooleanProperty prop){
+    public void playHidePane(BooleanProperty OPEN){
         if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED){
-            this.
-            hideSidebar.play();
+            if (OPEN.getValue()) {
+                hideSidebar.play();
+            }
         }
     }
 
     /**
      * Use these functions to programmatically play animations
-     * @param prop [the property determining if its open or not]
+     * @param OPEN [the property determining if its open or not]
      */
-    public void playShowPane(BooleanProperty prop){
+    public void playShowPane(BooleanProperty OPEN){
         if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
-            showSidebar.play();
+            if(!OPEN.getValue()) {
+                showSidebar.play();
+            }
         }
         return;
     }

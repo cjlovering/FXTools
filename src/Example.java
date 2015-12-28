@@ -92,16 +92,35 @@ public class Example extends Application{
         AnchorPane.setTopAnchor(down, 0.0);
         AnchorPane.setRightAnchor(down, 550/2.0);
 
-        Button powerButton = new Button("ALL");
-        powerButton.setOnAction(e -> {
+        Button allButton = new Button("ALL");
+        allButton.setOnAction(e -> {
             left.animatePane(leftOpen);
             right.animatePane(rightOpen);
             up.animatePane(upOpen);
             down.animatePane(downOpen);
         });
 
+        Button closeButton = new Button("Close All");
+        closeButton.setOnAction(event -> {
+            left.playHidePane(leftOpen);
+            right.playHidePane(rightOpen);
+            up.playHidePane(upOpen);
+            down.playHidePane(downOpen);
+        });
 
-        root.getChildren().addAll(left, right, up, down, powerButton);
+        Button openButton = new Button("Open All");
+        openButton.setOnAction(event -> {
+            left.playShowPane(leftOpen);
+            right.playShowPane(rightOpen);
+            up.playShowPane(upOpen);
+            down.playShowPane(downOpen);
+        });
+
+        AnchorPane.setTopAnchor(closeButton, 27.0);
+        AnchorPane.setTopAnchor(openButton, 54.0);
+
+
+        root.getChildren().addAll(left, right, up, down, allButton, openButton, closeButton);
         Scene scene = new Scene(root, 550, 550);
         s.setScene(scene);
         s.show();
