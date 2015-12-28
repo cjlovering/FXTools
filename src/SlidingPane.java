@@ -24,6 +24,71 @@ public class SlidingPane extends AnchorPane {
     }
 
 
+    /**
+     * The constructor:
+     * @param expanded   = the expanded size of the pane [this excludes the edge]
+     * @param edge       = the minimum size of the pane  [thus, total = edge + expanded]
+     * @param direction  = the direction of the slide
+     * @param OPEN       = if the pane is open
+     *                     note 1: Pass false to have sliding pane start closed
+     *                     note 2: Add sampleNode.visibleProperty.bind(OPEN); to hide desired parts
+     * @param buttonNode = Graphic/Text of button that controls the sliding
+     *                     note: It is not automatically added to the pane
+     * @param nodes      = optional nodes that will automatically be added to the pane
+     *                     note: you can add nodes later
+     */
+    public SlidingPane(final double expanded, final double edge, Direction direction, BooleanProperty OPEN, Node buttonNode, Node... nodes) {
+        this.direction = direction;
+        this.edge = edge;
+        this.expanded = expanded;
+
+        /* default is for an open pane, to change this use overloaded constructor */
+        switch (direction){
+            case LEFT_RIGHT:
+                if (OPEN.getValue()) {
+                    this.setPrefWidth(expanded + edge);
+                    this.setMinWidth(edge);
+                } else {
+                    this.setPrefWidth(edge);
+                    this.setMinWidth(edge);
+                }
+                break;
+            case UP_DOWN:
+                if (OPEN.getValue()) {
+                    this.setPrefHeight(expanded + edge);
+                    this.setMinHeight(edge);
+                } else {
+                    this.setPrefHeight(edge);
+                    this.setMinHeight(edge);
+                }
+        }
+
+        hideSidebar.setOnFinished(e -> OPEN.setValue(!OPEN.getValue()));
+        showSidebar.setOnFinished(e -> OPEN.setValue(!OPEN.getValue()));
+
+        this.controlButton = new javafx.scene.control.Button();
+        controlButton.setGraphic(buttonNode);
+        controlButton.setAlignment(Pos.CENTER);
+
+        this.getChildren().addAll(nodes); /* Note: nodes can be added after the creation of the slidingPane */
+
+        controlButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+
+
+
+                if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
+                    if (OPEN.getValue()) {
+                        hideSidebar.play();
+                    } else {
+                        showSidebar.play();
+                    }
+                }
+            }
+        });
+    }
+
     private Animation hideSidebar = new Transition() {
         {
             setCycleDuration(Duration.millis(350));
@@ -124,68 +189,4 @@ public class SlidingPane extends AnchorPane {
     }
 
 
-    /**
-     * The constructor:
-     * @param expanded   = the expanded size of the pane [this excludes the edge]
-     * @param edge       = the minimum size of the pane  [thus, total = edge + expanded]
-     * @param direction  = the direction of the slide
-     * @param OPEN       = if the pane is open
-     *                     note 1: Pass false to have sliding pane start closed
-     *                     note 2: Add sampleNode.visibleProperty.bind(OPEN); to hide desired parts
-     * @param buttonNode = Graphic/Text of button that controls the sliding
-     *                     note: It is not automatically added to the pane
-     * @param nodes      = optional nodes that will automatically be added to the pane
-     *                     note: you can add nodes later
-     */
-    public SlidingPane(final double expanded, final double edge, Direction direction, BooleanProperty OPEN, Node buttonNode, Node... nodes) {
-        this.direction = direction;
-        this.edge = edge;
-        this.expanded = expanded;
-
-        /* default is for an open pane, to change this use overloaded constructor */
-        switch (direction){
-            case LEFT_RIGHT:
-                if (OPEN.getValue()) {
-                    this.setPrefWidth(expanded + edge);
-                    this.setMinWidth(edge);
-                } else {
-                    this.setPrefWidth(edge);
-                    this.setMinWidth(edge);
-                }
-                break;
-            case UP_DOWN:
-                if (OPEN.getValue()) {
-                    this.setPrefHeight(expanded + edge);
-                    this.setMinHeight(edge);
-                } else {
-                    this.setPrefHeight(edge);
-                    this.setMinHeight(edge);
-                }
-        }
-
-        hideSidebar.setOnFinished(e -> OPEN.setValue(!OPEN.getValue()));
-        showSidebar.setOnFinished(e -> OPEN.setValue(!OPEN.getValue()));
-
-        this.controlButton = new javafx.scene.control.Button();
-        controlButton.setGraphic(buttonNode);
-        controlButton.setAlignment(Pos.CENTER);
-
-        this.getChildren().addAll(nodes); /* Note: nodes can be added after the creation of the slidingPane */
-
-        controlButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-
-
-
-                if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
-                    if (OPEN.getValue()) {
-                        hideSidebar.play();
-                    } else {
-                        showSidebar.play();
-                    }
-                }
-            }
-        });
-    }
 }
