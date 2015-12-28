@@ -6,7 +6,7 @@ General:
 This small 'library' consists of a couple components. 
 
 The SlidingPane component consists of a class that can be used to create a pane that slides either left and right or up and down. 
-The ZoomAndPan allows the Group to zoomed to (by the mouse) and panned by dragging.
+The ZoomAndPan allows the Group to zoomed to the mouse and panned by dragging.
 
 
 Usage:
