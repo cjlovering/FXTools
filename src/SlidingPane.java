@@ -19,6 +19,10 @@ public class SlidingPane extends AnchorPane {
 
     private javafx.scene.control.Button controlButton = new javafx.scene.control.Button();
 
+    /**
+     * Returns the button that plays the animation
+     * @return
+     */
     public javafx.scene.control.Button getButton() {
         return controlButton;
     }
@@ -42,7 +46,6 @@ public class SlidingPane extends AnchorPane {
         this.edge = edge;
         this.expanded = expanded;
 
-        /* default is for an open pane, to change this use overloaded constructor */
         switch (direction){
             case LEFT_RIGHT:
                 if (OPEN.getValue()) {
@@ -53,6 +56,7 @@ public class SlidingPane extends AnchorPane {
                     this.setMinWidth(edge);
                 }
                 break;
+
             case UP_DOWN:
                 if (OPEN.getValue()) {
                     this.setPrefHeight(expanded + edge);
@@ -70,14 +74,11 @@ public class SlidingPane extends AnchorPane {
         controlButton.setGraphic(buttonNode);
         controlButton.setAlignment(Pos.CENTER);
 
-        this.getChildren().addAll(nodes); /* Note: nodes can be added after the creation of the slidingPane */
+        this.getChildren().addAll(nodes);
 
         controlButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
-
-
                 if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
                     if (OPEN.getValue()) {
                         hideSidebar.play();
@@ -105,12 +106,12 @@ public class SlidingPane extends AnchorPane {
             final double curHeight;
             final double curWidth;
 
-            switch (direction){//note that this changes depending on if you want it closed or opened first
-                case LEFT_RIGHT://to the right visible first, slides left
+            switch (direction){
+                case LEFT_RIGHT:
                     curWidth = edge + expanded * (1.0 - t);
                     setPrefWidth(curWidth);
                     break;
-                case UP_DOWN://down not visible, click down
+                case UP_DOWN:
                     curHeight = edge + expanded * (1.0 - t);
                     setPrefHeight(curHeight);
                     break;
@@ -135,8 +136,8 @@ public class SlidingPane extends AnchorPane {
             final double curHeight;
             final double curWidth;
 
-            switch (direction){//note that this changes depending on if you want it closed or opened first
-                case LEFT_RIGHT://to the right visible first, slides left
+            switch (direction){
+                case LEFT_RIGHT:
                     curWidth = edge + expanded * t;
                     setPrefWidth(curWidth);
                     break;
@@ -172,7 +173,6 @@ public class SlidingPane extends AnchorPane {
         if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED){
             this.
             hideSidebar.play();
-            //hideSidebar.setOnFinished(e -> prop.setValue(!prop.getValue()));
         }
     }
 
@@ -183,10 +183,7 @@ public class SlidingPane extends AnchorPane {
     public void playShowPane(BooleanProperty prop){
         if (showSidebar.statusProperty().get() == Animation.Status.STOPPED && hideSidebar.statusProperty().get() == Animation.Status.STOPPED) {
             showSidebar.play();
-            //showSidebar.setOnFinished(e -> prop.setValue(!prop.getValue()));
         }
         return;
     }
-
-
 }
