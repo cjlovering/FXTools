@@ -26,6 +26,8 @@ public class Example extends Application {
 
 
         Pane group = new Pane();
+        group.setMinHeight(550);
+        group.setMaxWidth(550);
         Rectangle blue = new Rectangle(300, 200, Color.BLUE);
         Rectangle red = new Rectangle(100, 200, Color.RED);
         Rectangle green = new Rectangle(50, 310, Color.GREEN);

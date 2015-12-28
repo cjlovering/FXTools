@@ -59,7 +59,6 @@ public class ZoomAndPan {
         double panXTrans = panAndZoomPane.getTranslateX();
 
         return scrollPane;
-
     }
 
 
